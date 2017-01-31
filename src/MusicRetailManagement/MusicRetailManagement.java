@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MusicRetailSystems;
+package MusicRetailManagement;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -89,11 +89,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         setTitle("    Music Retail Management 1.0");
         setBackground(null);
         setMinimumSize(new java.awt.Dimension(655, 600));
-        setPreferredSize(new java.awt.Dimension(660, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/images (4).jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailManagement/images (4).jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-32388, -32340, -1, -1));
 
@@ -103,7 +102,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
         addSingleBtn.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         addSingleBtn.setForeground(new java.awt.Color(0, 153, 0));
-        addSingleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Music_48px.png"))); // NOI18N
+        addSingleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Money Bag_48px.png"))); // NOI18N
         addSingleBtn.setText("Buy Song");
         addSingleBtn.setToolTipText("");
         addSingleBtn.setBorder(new javax.swing.border.MatteBorder(null));
@@ -113,11 +112,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel6.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel6.setForeground(new java.awt.Color(0, 153, 0));
 
         jTabbedPane1.setForeground(new java.awt.Color(0, 153, 0));
-        jTabbedPane1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jTabbedPane1.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
 
         jPanel8.setForeground(new java.awt.Color(0, 153, 0));
 
@@ -127,13 +126,13 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel17.setBackground(new java.awt.Color(0, 255, 255));
         jLabel17.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Purchase Order_32px.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Purchase Order_32px.png"))); // NOI18N
         jLabel17.setText("Song in Order");
         jLabel17.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         checkoutBtn.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         checkoutBtn.setForeground(new java.awt.Color(0, 153, 0));
-        checkoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Checkout_48px_1.png"))); // NOI18N
+        checkoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Checkout_48px_1.png"))); // NOI18N
         checkoutBtn.setText("Checkout");
         checkoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,18 +161,18 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cartItems, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addComponent(checkoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Calculator", jPanel8);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 0));
         jLabel4.setText("Date/Time Sold");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 153, 0));
         jLabel7.setText("Song Sold");
 
@@ -190,29 +189,29 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4))
-                        .addGap(0, 241, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(singleSoldName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
+                        .addGap(0, 245, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(singleSoldName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Receipt", jPanel9);
@@ -224,7 +223,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,13 +236,13 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(0, 153, 0));
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Receive Cash_48px.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receive Cash_48px.png"))); // NOI18N
         jLabel8.setText("Price Per Song GHC1.5");
         jLabel8.setToolTipText("");
 
         jButton5.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 153, 0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Folder_48px.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_48px.png"))); // NOI18N
         jButton5.setText("Records");
         jButton5.setToolTipText("");
         jButton5.setBorder(new javax.swing.border.MatteBorder(null));
@@ -255,14 +254,14 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 153, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Receipt_48px.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receipt_48px.png"))); // NOI18N
         jButton7.setText("Receipt");
         jButton7.setToolTipText("");
         jButton7.setBorder(new javax.swing.border.MatteBorder(null));
 
         jButton8.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 153, 0));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MusicRetailSystems/Exit_48px.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exit_48px.png"))); // NOI18N
         jButton8.setText("Exit");
         jButton8.setToolTipText("");
         jButton8.setBorder(new javax.swing.border.MatteBorder(null));
@@ -314,7 +313,6 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(25, 75, 25));
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Cobby Dollar\\Documents\\NetBeansProjects\\MusicRetailManagement-master\\src\\MusicRetailSystems\\Audio File_48px.png")); // NOI18N
         jLabel1.setText("Music Retail Management 1.0");
         jLabel1.setToolTipText("");
 
