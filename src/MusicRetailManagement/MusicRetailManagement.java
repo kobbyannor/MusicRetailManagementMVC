@@ -5,6 +5,10 @@
  */
 package MusicRetailManagement;
 
+import com.mpatric.mp3agic.ID3v1;
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.Mp3File;
+import com.mpatric.mp3agic.UnsupportedTagException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -60,6 +64,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         cartItems = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         checkoutBtn = new javax.swing.JButton();
+        artistLabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -139,6 +144,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
         });
 
+        artistLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -152,6 +159,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 116, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(artistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +171,9 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cartItems, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(artistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(checkoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -388,12 +401,31 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
             //  String valueToBeInserted = "";
             //            for (int j = 0; j < files.length; j++) {
-                //                valueToBeInserted = valueToBeInserted + " " + files[j];
-                //            }
-
+            //                valueToBeInserted = valueToBeInserted + " " + files[j];
+            //            }
             cartItems.setText(fc.getSelectedFile().getName());
-            mp3Source = fc.getSelectedFile().toString();//readies the selected file to be copied
+                mp3Source = fc.getSelectedFile().toString();//readies the selected file to be copied
             sourceFile = new File(mp3Source);
+            Mp3File mp3file = null;
+            try {
+                mp3file = new Mp3File(mp3Source );
+            } catch (IOException ex) {
+                Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedTagException ex) {
+                Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvalidDataException ex) {
+                Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (mp3file.hasId3v1Tag()) {
+                ID3v1 id3v1Tag = mp3file.getId3v1Tag();
+                System.out.println("Track: " + id3v1Tag.getTrack());
+                artistLabel.setText("Artist: " + id3v1Tag.getArtist());
+                System.out.println("Title: " + id3v1Tag.getTitle());
+                System.out.println("Album: " + id3v1Tag.getAlbum());
+                System.out.println("Year: " + id3v1Tag.getYear());
+                System.out.println("Genre: " + id3v1Tag.getGenre() + " (" + id3v1Tag.getGenreDescription() + ")");
+                System.out.println("Comment: " + id3v1Tag.getComment());
+            }
             //             copy just one file
             //             cartItems.setText(fc.getSelectedFile().toString());
             //         fileName = fc.getSelectedFile().toString( );
@@ -412,6 +444,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     final JFileChooser fc = new JFileChooser();
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +482,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSingleBtn;
+    private javax.swing.JLabel artistLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel cartItems;
     private javax.swing.JButton checkoutBtn;
