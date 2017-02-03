@@ -65,6 +65,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         checkoutBtn = new javax.swing.JButton();
         artistLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -125,6 +127,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jPanel8.setForeground(new java.awt.Color(0, 153, 0));
 
         cartItems.setForeground(new java.awt.Color(0, 153, 0));
+        cartItems.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cartItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel17.setBackground(new java.awt.Color(0, 255, 255));
@@ -144,36 +147,50 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
         });
 
+        artistLabel.setForeground(new java.awt.Color(0, 153, 0));
         artistLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel5.setText("Song Details");
+
+        jLabel6.setText("File Details");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cartItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 116, Short.MAX_VALUE)))
+                        .addGap(0, 116, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cartItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(artistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(artistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cartItems, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(artistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(cartItems, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(artistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(checkoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -218,12 +235,12 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(singleSoldName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(singleSoldName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Receipt", jPanel9);
@@ -403,12 +420,12 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             //            for (int j = 0; j < files.length; j++) {
             //                valueToBeInserted = valueToBeInserted + " " + files[j];
             //            }
-            cartItems.setText(fc.getSelectedFile().getName());
-                mp3Source = fc.getSelectedFile().toString();//readies the selected file to be copied
+            //  cartItems.setText(fc.getSelectedFile().getName());
+            mp3Source = fc.getSelectedFile().toString();//readies the selected file to be copied
             sourceFile = new File(mp3Source);
             Mp3File mp3file = null;
             try {
-                mp3file = new Mp3File(mp3Source );
+                mp3file = new Mp3File(mp3Source);
             } catch (IOException ex) {
                 Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
             } catch (UnsupportedTagException ex) {
@@ -419,15 +436,18 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1Tag = mp3file.getId3v1Tag();
                 System.out.println("Track: " + id3v1Tag.getTrack());
-                artistLabel.setText("Artist: " + id3v1Tag.getArtist());
-                System.out.println("Title: " + id3v1Tag.getTitle());
-                System.out.println("Album: " + id3v1Tag.getAlbum());
-                System.out.println("Year: " + id3v1Tag.getYear());
-                System.out.println("Genre: " + id3v1Tag.getGenre() + " (" + id3v1Tag.getGenreDescription() + ")");
-                System.out.println("Comment: " + id3v1Tag.getComment());
+//cartItems
+                // artistLabel
+                cartItems.setText("<html>Artist: " + id3v1Tag.getArtist()
+                        + "<br>Title: " + id3v1Tag.getTitle() + "<br>Album: " + id3v1Tag.getAlbum() + "<html>");
+               // System.out.println("Title: " + id3v1Tag.getTitle());
+                // System.out.println(");
+                //System.out.println("Year: " + id3v1Tag.getYear()+);
+                //System.out.println("Genre: " + id3v1Tag.getGenre()+ + " (" + id3v1Tag.getGenreDescription() + ")");
+                //System.out.println("Comment: " + id3v1Tag.getComment());
             }
             //             copy just one file
-            //             cartItems.setText(fc.getSelectedFile().toString());
+                        artistLabel.setText(fc.getSelectedFile().toString());
             //         fileName = fc.getSelectedFile().toString( );
         } else {
             cartItems.setText("Purchase Process Cancelled");
@@ -495,6 +515,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
