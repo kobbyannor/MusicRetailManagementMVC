@@ -393,7 +393,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             //            System.out.println(currentTimestamp);
 
             //date type 2
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy, hh:mm:ss.SSS a");
             String stringDate = dateFormat.format(new Date());
             jLabel3.setText(stringDate);
 
