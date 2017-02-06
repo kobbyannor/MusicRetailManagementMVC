@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.security.Timestamp;
+import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -36,12 +37,33 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String mp3Destination;
     private static File sourceFile;
     private static File destinationFile;
+    java.sql.Connection conn = null;
+
+    String dbTitle;
+    String dbArtist;
+    String dbYear;
+    String dbDate;
+    int dbSales = 1;
 
     /**
      * Creates new form MusicRetailManagement
      */
     public MusicRetailManagement() {
         initComponents();
+    }
+
+    //database connection
+    public void initialize() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = java.sql.DriverManager.getConnection(
+                    "jdbc:mysql://localhost/musicretail?user=root&password=9144");
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(0);
+        }
+        System.out.println("Connection established");
     }
 
     /**
@@ -387,18 +409,39 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             String nameOfSingleSold = fc.getSelectedFile().getName();
             singleSoldName.setText(nameOfSingleSold);
             //date type 1
-    
 
             //date type 2
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy, hh:mm:ss.SSS a");
             String stringDate = dateFormat.format(new Date());
             jLabel3.setText(stringDate);
 
+            initialize();
+
+            System.out.println("DONE!!!");
+            try {
+                PreparedStatement p = conn.prepareStatement(
+                        "Insert Into song set song_title=?, "
+                                + "artist_Name=? ,release_Year =?,"
+                                + "time_Sold =?,no_of_sales=? ON DUPLICATE KEY UPDATE no_of_sales=no_of_sales+1;");
+
+//             
+                p.setString(1, dbTitle);
+                p.setString(2, dbArtist);
+                p.setString(3, dbYear);
+                p.setString(4, dbDate);
+                p.setInt(5, dbSales=1);
+                p.execute();  //use execute if no results expected back
+            } catch (Exception e) {
+                System.out.println("Error" + e.toString());
+                return;
+            }
+
         } else {
             cartItems.setText("Purchase Process cancelled");
             fileName = "the file can";
         }
     }//GEN-LAST:event_checkoutBtnActionPerformed
+
 
     private void addSingleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSingleBtnActionPerformed
         // TODO add your handling code here:
@@ -423,6 +466,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             Mp3File mp3file = null;
             try {
                 mp3file = new Mp3File(mp3Source);
+            } catch (java.nio.file.AccessDeniedException e) {
+                return;
             } catch (IOException ex) {
                 Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
             } catch (UnsupportedTagException ex) {
@@ -435,17 +480,26 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 // System.out.println("Track: " + id3v1Tag.getTrack());
 //cartItems
                 // artistLabel
-                cartItems.setText("<html>Artist: " + id3v1Tag.getArtist()
-                        + "<br>Title: " + id3v1Tag.getTitle() + "<br>Album: " + id3v1Tag.getAlbum() + "<html>");
+
+                dbTitle = id3v1Tag.getTitle();
+                dbArtist = id3v1Tag.getArtist();
+                dbYear = id3v1Tag.getYear();
+                // dbDate= stringDate();
+                //    dbSales= no_of_sales();
+
+                cartItems.setText("<html>Artist: " + dbArtist
+                        + "<br>Title: " + dbTitle + "<br>Album: " + dbYear + "<html>");
                 // System.out.println("Title: " + id3v1Tag.getTitle());
                 // System.out.println(");
                 //System.out.println("Year: " + id3v1Tag.getYear()+);
                 //System.out.println("Genre: " + id3v1Tag.getGenre()+ + " (" + id3v1Tag.getGenreDescription() + ")");
                 //System.out.println("Comment: " + id3v1Tag.getComment());
+
             }
             //             copy just one file
             artistLabel.setText(fc.getSelectedFile().toString());
             //         fileName = fc.getSelectedFile().toString( );
+
         } else {
             cartItems.setText("Purchase Process Cancelled");
             fileName = "the file";
