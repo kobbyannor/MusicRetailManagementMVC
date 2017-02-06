@@ -387,10 +387,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             String nameOfSingleSold = fc.getSelectedFile().getName();
             singleSoldName.setText(nameOfSingleSold);
             //date type 1
-            //            Calendar calendar = Calendar.getInstance();
-            //            java.util.Date now = calendar.getTime();
-            //            java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-            //            System.out.println(currentTimestamp);
+    
 
             //date type 2
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy, hh:mm:ss.SSS a");
