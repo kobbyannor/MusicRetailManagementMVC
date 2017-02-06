@@ -435,7 +435,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
             if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1Tag = mp3file.getId3v1Tag();
-                System.out.println("Track: " + id3v1Tag.getTrack());
+               // System.out.println("Track: " + id3v1Tag.getTrack());
 //cartItems
                 // artistLabel
                 cartItems.setText("<html>Artist: " + id3v1Tag.getArtist()
