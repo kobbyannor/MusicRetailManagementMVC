@@ -435,19 +435,19 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
             if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1Tag = mp3file.getId3v1Tag();
-               // System.out.println("Track: " + id3v1Tag.getTrack());
+                // System.out.println("Track: " + id3v1Tag.getTrack());
 //cartItems
                 // artistLabel
                 cartItems.setText("<html>Artist: " + id3v1Tag.getArtist()
                         + "<br>Title: " + id3v1Tag.getTitle() + "<br>Album: " + id3v1Tag.getAlbum() + "<html>");
-               // System.out.println("Title: " + id3v1Tag.getTitle());
+                // System.out.println("Title: " + id3v1Tag.getTitle());
                 // System.out.println(");
                 //System.out.println("Year: " + id3v1Tag.getYear()+);
                 //System.out.println("Genre: " + id3v1Tag.getGenre()+ + " (" + id3v1Tag.getGenreDescription() + ")");
                 //System.out.println("Comment: " + id3v1Tag.getComment());
             }
             //             copy just one file
-                        artistLabel.setText(fc.getSelectedFile().toString());
+            artistLabel.setText(fc.getSelectedFile().toString());
             //         fileName = fc.getSelectedFile().toString( );
         } else {
             cartItems.setText("Purchase Process Cancelled");
