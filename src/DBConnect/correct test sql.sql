@@ -1,7 +1,7 @@
 create database musicretail;
 use musicretail;
 
-
+drop table  songTracking;
 drop table  song;
 
 create table song(
