@@ -20,6 +20,7 @@ artist_Name varchar(200) references musician(stage_Name) ,
 release_Year varchar(200),
 time_Sold varchar(200),
 no_of_sales int,
+price_in_cedis double default 1.5,
 primary key(song_title,artist_Name)
 );
 
