@@ -309,6 +309,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jButton7.setText("Receipt");
         jButton7.setToolTipText("");
         jButton7.setBorder(new javax.swing.border.MatteBorder(null));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 153, 0));
@@ -524,8 +529,15 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+
+        Records newRecords = new Records(null, true);
+        newRecords.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Receipt newReceipt = new Receipt(null, true);
+        newReceipt.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     final JFileChooser fc = new JFileChooser();
 
