@@ -5,6 +5,11 @@
  */
 package MusicRetailManagement;
 
+import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Cobby Dollar
@@ -16,9 +21,33 @@ public class Records extends javax.swing.JDialog {
      */
     public Records(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
+        fetchRecordsFromDatabase();
+    }
+//fetches records from database
+
+    public void fetchRecordsFromDatabase() {
+
+        RetailerLogin reestablishConnection = new RetailerLogin();
+        reestablishConnection.initialize();
+
+        System.out.println("DONE!!!");
+        try {
+            PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT * FROM musicretail.song");
+
+            ResultSet result = p.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(result));
+
+        } catch (Exception e) {
+            System.out.println("Error" + e.toString());
+            return;
+        }
+
     }
 
+    //public void initialize() {
+    //  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,10 +59,10 @@ public class Records extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1024, 576));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -49,10 +78,16 @@ public class Records extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 440, 290));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 640, 350));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel2.setText("Top Sellers");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 240, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CCC.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1024, 576));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,8 +119,7 @@ public class Records extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the dialog */
+             /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Records dialog = new Records(new javax.swing.JFrame(), true);
@@ -102,7 +136,8 @@ public class Records extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

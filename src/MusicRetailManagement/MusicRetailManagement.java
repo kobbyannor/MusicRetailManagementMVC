@@ -13,8 +13,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.Color;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.security.Timestamp;
@@ -24,6 +27,9 @@ import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Transient;
 import javax.swing.JFileChooser;
 
 /**
@@ -608,4 +614,5 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel singleSoldName;
     // End of variables declaration//GEN-END:variables
+
 }

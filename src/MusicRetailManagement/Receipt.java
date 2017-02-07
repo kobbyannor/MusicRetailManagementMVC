@@ -5,6 +5,10 @@
  */
 package MusicRetailManagement;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Cobby Dollar
@@ -17,6 +21,26 @@ public class Receipt extends javax.swing.JDialog {
     public Receipt(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        fetchReceiptsFromDatabase();
+    }
+
+    public void fetchReceiptsFromDatabase() {
+
+        RetailerLogin reestablishConnection = new RetailerLogin();
+        reestablishConnection.initialize();
+
+        System.out.println("DONE!!!");
+        try {
+            PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT * FROM musicretail.songtracking");
+
+            ResultSet result = p.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(result));
+
+        } catch (Exception e) {
+            System.out.println("Error" + e.toString());
+            return;
+        }
+
     }
 
     /**
@@ -30,9 +54,6 @@ public class Receipt extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -51,19 +72,10 @@ public class Receipt extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 470, 320));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 560, 340));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BBBB3.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 270, 190));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BBBB3.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 190));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BBBB3.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 270, 190));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BBBB3.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 270, 190));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/aaaaawiz22.PNG"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,9 +123,6 @@ public class Receipt extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
