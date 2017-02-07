@@ -117,6 +117,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("    Music Retail Management 1.0");
         setBackground(null);
+        setMaximumSize(new java.awt.Dimension(800, 900));
         setMinimumSize(new java.awt.Dimension(655, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -526,6 +527,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -571,7 +573,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MusicRetailManagement().setVisible(true);
+
+                if (2 == 2) {
+                    new MusicRetailManagement().setVisible(true);
+                }
+
             }
         });
     }
