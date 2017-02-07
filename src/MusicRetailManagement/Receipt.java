@@ -31,7 +31,9 @@ public class Receipt extends javax.swing.JDialog {
 
         System.out.println("DONE!!!");
         try {
-            PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT * FROM musicretail.songtracking");
+            PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT id,song_title,artist_Name"
+                    + ",time_Sold "
+                    + "FROM musicretail.songtracking");
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
@@ -71,11 +73,19 @@ public class Receipt extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(200);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 560, 340));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/aaaaawiz22.PNG"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/afd.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
