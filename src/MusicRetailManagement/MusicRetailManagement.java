@@ -42,7 +42,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String dbTitle;
     String dbArtist;
     String dbYear;
-    String dbDate;
+    String dbTimeSold;
     int dbSales = 1;
 
     /**
@@ -390,7 +390,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
-      
+
         int result = fc.showSaveDialog(null);
 
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -422,12 +422,27 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                         + "artist_Name=? ,release_Year =?,"
                         + "time_Sold =?,no_of_sales=? ON DUPLICATE KEY UPDATE no_of_sales=no_of_sales+1;");
 
-             
                 p.setString(1, dbTitle);
                 p.setString(2, dbArtist);
                 p.setString(3, dbYear);
-                p.setString(4, dbDate);
+                p.setString(4, stringDate);
                 p.setInt(5, dbSales = 1);
+                p.execute();  //use execute if no results expected back
+            } catch (Exception e) {
+                System.out.println("Error" + e.toString());
+                return;
+            }
+
+            try {
+                PreparedStatement p = conn.prepareStatement(
+                        "Insert Into songTracking set song_title=?, "
+                        + "artist_Name=? ,release_Year =?,"
+                        + "time_Sold =?");
+
+                p.setString(1, dbTitle);
+                p.setString(2, dbArtist);
+                p.setString(3, dbYear);
+                p.setString(4, stringDate);
                 p.execute();  //use execute if no results expected back
             } catch (Exception e) {
                 System.out.println("Error" + e.toString());
@@ -482,7 +497,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 dbTitle = id3v1Tag.getTitle();
                 dbArtist = id3v1Tag.getArtist();
                 dbYear = id3v1Tag.getYear();
-                // dbDate= stringDate();
+                // dbTimeSold= stringDate();
                 //    dbSales= no_of_sales();
 
                 cartItems.setText("<html>Artist: " + dbArtist
