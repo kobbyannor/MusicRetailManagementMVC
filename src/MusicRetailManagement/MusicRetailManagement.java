@@ -574,9 +574,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                if (2 == 2) {
-                    new MusicRetailManagement().setVisible(true);
-                }
+                new RetailerLogin().setVisible(true);
+                    // new MusicRetailManagement().setVisible(true);
 
             }
         });

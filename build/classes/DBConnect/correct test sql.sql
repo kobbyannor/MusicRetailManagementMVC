@@ -4,6 +4,16 @@ use musicretail;
 drop table  songTracking;
 drop table  song;
 
+create table retailer(
+retailerName varchar(200) ,
+artistPassword  varchar(200) 
+);
+
+
+insert into retailer(retailerName,artistPassword)
+values("admin","admin");
+
+
 create table song(
 song_title varchar(200) ,
 artist_Name varchar(200) references musician(stage_Name) ,
