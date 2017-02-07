@@ -527,7 +527,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -575,7 +575,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             public void run() {
 
                 new RetailerLogin().setVisible(true);
-                    // new MusicRetailManagement().setVisible(true);
+                // new MusicRetailManagement().setVisible(true);
 
             }
         });

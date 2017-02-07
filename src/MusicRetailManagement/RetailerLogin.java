@@ -5,12 +5,17 @@
  */
 package MusicRetailManagement;
 
+import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Cobby Dollar
  */
 public class RetailerLogin extends javax.swing.JFrame {
 
+    int verification;
     java.sql.Connection conn = null;
 
     /**
@@ -45,7 +50,7 @@ public class RetailerLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        userNameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -70,8 +75,8 @@ public class RetailerLogin extends javax.swing.JFrame {
         });
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 270, 30));
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 270, 30));
+        userNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(userNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 270, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel2.setText("MUSIC RETAIL MANAGEMENT ");
@@ -100,7 +105,32 @@ public class RetailerLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (2 == 2) {
+        initialize();
+
+        System.out.println("DONE!!!");
+        try {
+            PreparedStatement p = conn.prepareStatement(
+                    "SELECT * FROM musicretail.retailer where retailerName=? and artistPassword = ?;");
+
+            p.setString(1, userNameField.getText());
+            p.setString(2, String.valueOf(jPasswordField1.getPassword()));
+
+            ResultSet result = p.executeQuery();
+            if (result.next()) {
+                userNameField.setText("Login Successfully!");
+                userNameField.setForeground(Color.GREEN);
+                verification = 2;
+            } else {
+                userNameField.setText("Invalid username or password");
+                userNameField.setForeground(Color.RED);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error" + e.toString());
+            return;
+        }
+
+        if (verification == 2) {
             new MusicRetailManagement().setVisible(true);
 
             this.dispose();
@@ -149,6 +179,6 @@ public class RetailerLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
 }
