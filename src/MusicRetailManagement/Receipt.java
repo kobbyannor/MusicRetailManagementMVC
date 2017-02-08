@@ -102,7 +102,7 @@ public class Receipt extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 120, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 130, 40));
 
         jButton3.setText("Calculate Total Earnings");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -118,11 +118,11 @@ public class Receipt extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 170, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 190, 30));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 80, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 100, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,10 +137,8 @@ public class Receipt extends javax.swing.JDialog {
   private void printToPDF() {
         MessageFormat header = new MessageFormat(" UP-TO-THE-MINUTE RECEIPT REPORTS ");
 
-        MessageFormat footer = new MessageFormat("Page(0,number,integer)");
-
         try {
-            jTable1.print(JTable.PrintMode.NORMAL, header, footer);
+            jTable1.print(JTable.PrintMode.NORMAL, header, header);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -179,7 +177,7 @@ public class Receipt extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            RetailerLogin reestablishConnection = new RetailerLogin();
+        RetailerLogin reestablishConnection = new RetailerLogin();
         reestablishConnection.initialize();
 
         System.out.println("DONE!!!");
@@ -194,7 +192,7 @@ public class Receipt extends javax.swing.JDialog {
 
             if (result.next()) {
                 String foundType = result.getString(1);
-                jLabel3.setText( result.getString(1) +" song(s)" );
+                jLabel3.setText(result.getString(1) + " song(s)");
                 System.out.println(result.getString(1));
             }
 

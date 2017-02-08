@@ -8,6 +8,8 @@ package MusicRetailManagement;
 import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.MessageFormat;
+import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -35,7 +37,7 @@ public class Records extends javax.swing.JDialog {
         System.out.println("DONE!!!");
         try {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT song_title,"
-                    + "artist_Name,release_Year,time_Sold as 'Last Time Sold',no_of_sales,price_in_cedis*no_of_sales as 'Total (in ¢)' "
+                    + "artist_Name,release_Year,time_Sold as 'Last Time Sold',no_of_sales,price_in_cedis*no_of_sales as 'Total Earnings (in ¢)' "
                     + "FROM musicretail.song order by no_of_sales DESC");
 
             ResultSet result = p.executeQuery();
@@ -61,6 +63,7 @@ public class Records extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -85,7 +88,15 @@ public class Records extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 750, 440));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 750, 380));
+
+        jButton1.setText("Print Report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 51));
@@ -98,6 +109,21 @@ public class Records extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+  private void printToPDF() {
+        MessageFormat header = new MessageFormat(" TOP SELLERS REPORT ");
+
+       
+        try {
+            jTable1.print(JTable.PrintMode.NORMAL, header, header);
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        printToPDF();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +168,7 @@ public class Records extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
