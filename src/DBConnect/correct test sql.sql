@@ -38,7 +38,8 @@ id int auto_increment primary key,
 song_title varchar(200) ,
 artist_Name varchar(200) references musician(stage_Name) ,
 release_Year varchar(200),
-time_Sold varchar(200)
+time_Sold varchar(200),
+price_in_cedis double default 1.5
 );
 
 
