@@ -41,6 +41,10 @@ release_Year varchar(200),
 time_Sold varchar(200)
 );
 
+
+	ALTER TABLE `songTracking`
+	  CHANGE COLUMN `song_title` `song_title` VARCHAR(500);
+
 insert into songTracking(song_title,artist_Name,release_Year,time_Sold)
 
 values("Susuka remix","Kofi Kinata",'2015','18th may');

@@ -82,7 +82,7 @@ public class Receipt extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 370));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/afd.jpg"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 480));

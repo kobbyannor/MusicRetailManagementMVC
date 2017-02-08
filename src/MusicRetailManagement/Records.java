@@ -35,8 +35,8 @@ public class Records extends javax.swing.JDialog {
         System.out.println("DONE!!!");
         try {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT song_title,"
-                    + "artist_Name,release_Year,time_Sold as 'most recent time sold',no_of_sales,price_in_cedis*no_of_sales as 'Total (in ¢)' "
-                    + "FROM musicretail.song");
+                    + "artist_Name,release_Year,time_Sold as 'Last Time Sold',no_of_sales,price_in_cedis*no_of_sales as 'Total (in ¢)' "
+                    + "FROM musicretail.song order by no_of_sales DESC");
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
@@ -79,17 +79,22 @@ public class Records extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 380));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 750, 440));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 51));
         jLabel2.setText("Top Sellers");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 230, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 230, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CCC.jpg"))); // NOI18N
         jLabel1.setMinimumSize(new java.awt.Dimension(1024, 576));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 440));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
