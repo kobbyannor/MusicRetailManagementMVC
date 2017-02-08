@@ -61,6 +61,8 @@ public class Receipt extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -88,11 +90,11 @@ public class Receipt extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, 370));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, 220));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 180, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 110, 30));
 
         jButton2.setText("PRINT REPORT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +102,7 @@ public class Receipt extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 423, 120, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 120, 40));
 
         jButton3.setText("Calculate Total Earnings");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +110,19 @@ public class Receipt extends javax.swing.JDialog {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 423, -1, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 130, 40));
+
+        jButton1.setText("Total Number of Songs Retailed");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 170, 30));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,7 +135,7 @@ public class Receipt extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
   private void printToPDF() {
-        MessageFormat header = new MessageFormat(" Print Report");
+        MessageFormat header = new MessageFormat(" UP-TO-THE-MINUTE RECEIPT REPORTS ");
 
         MessageFormat footer = new MessageFormat("Page(0,number,integer)");
 
@@ -163,6 +177,32 @@ public class Receipt extends javax.swing.JDialog {
             return;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            RetailerLogin reestablishConnection = new RetailerLogin();
+        reestablishConnection.initialize();
+
+        System.out.println("DONE!!!");
+        try {
+            PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT count(id)"
+                    + " FROM  musicretail.songtracking ");
+
+            ResultSet result = p.executeQuery();
+            // jTable1.setModel(DbUtils.resultSetToTableModel(result));
+//            jLabel2.setText(result.getString(1));
+//            System.out.println(result.getString(1));
+
+            if (result.next()) {
+                String foundType = result.getString(1);
+                jLabel3.setText( result.getString(1) +" song(s)" );
+                System.out.println(result.getString(1));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error" + e.toString());
+            return;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,10 +247,12 @@ public class Receipt extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
