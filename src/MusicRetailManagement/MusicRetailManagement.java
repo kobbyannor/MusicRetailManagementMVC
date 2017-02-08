@@ -31,6 +31,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Transient;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,6 +71,12 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             System.exit(0);
         }
         System.out.println("Connection established");
+    }
+
+    //show alert messages containing information
+    public static void messageDisplay(String infoMessage, String titleBar) {
+        JOptionPane.showMessageDialog(null, infoMessage, "messageBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     /**
@@ -460,10 +467,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 System.out.println("Error" + e.toString());
                 return;
             }
-
+            messageDisplay(dbArtist + " - " + dbTitle + " successfully purchased!", "Alert");
         } else {
-            cartItems.setText("Purchase Process cancelled");
-            fileName = "the file can";
+            //cartItems.setText("Purchase Process cancelled");
+            messageDisplay("Purchase Process cancelled", "Alert");
         }
     }//GEN-LAST:event_checkoutBtnActionPerformed
 
@@ -526,14 +533,16 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             //         fileName = fc.getSelectedFile().toString( );
 
         } else {
-            cartItems.setText("Purchase Process Cancelled");
+            messageDisplay("Purchase Process cancelled", "Alert");
+            //     cartItems.setText("Purchase Process Cancelled");
+
             fileName = "the file";
         }
     }//GEN-LAST:event_addSingleBtnActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-       System.exit (0);
+        System.exit(0);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

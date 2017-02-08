@@ -139,7 +139,8 @@ public class Receipt extends javax.swing.JDialog {
 
         try {
             jTable1.print(JTable.PrintMode.NORMAL, header, header);
-
+            jLabel2.print(null);
+            jLabel3.print(null);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

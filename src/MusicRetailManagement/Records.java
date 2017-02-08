@@ -39,6 +39,8 @@ public class Records extends javax.swing.JDialog {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT song_title,"
                     + "artist_Name,release_Year,time_Sold as 'Last Time Sold',no_of_sales,price_in_cedis*no_of_sales as 'Total Earnings (in ¢)' "
                     + "FROM musicretail.song order by no_of_sales DESC");
+            
+            
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
@@ -112,7 +114,6 @@ public class Records extends javax.swing.JDialog {
   private void printToPDF() {
         MessageFormat header = new MessageFormat(" TOP SELLERS REPORT ");
 
-       
         try {
             jTable1.print(JTable.PrintMode.NORMAL, header, header);
 
