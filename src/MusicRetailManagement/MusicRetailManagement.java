@@ -32,7 +32,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Transient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+import javax.swing.UIManager;
 /**
  *
  * @author Cobby Dollar
@@ -569,10 +569,13 @@ public class MusicRetailManagement extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+              //  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MusicRetailManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
