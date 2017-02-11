@@ -90,7 +90,7 @@ public class Records extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 750, 380));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 740, 370));
 
         jButton1.setText("Print Report");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
