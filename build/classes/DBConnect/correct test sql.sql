@@ -45,6 +45,9 @@ price_in_cedis double default 1.5
 
 	ALTER TABLE `songTracking`
 	  CHANGE COLUMN `song_title` `song_title` VARCHAR(500);
+      
+      ALTER TABLE `songTracking`
+  ADD customer_Device VARCHAR(1500);
 
 insert into songTracking(song_title,artist_Name,release_Year,time_Sold)
 

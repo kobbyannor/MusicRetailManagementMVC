@@ -34,11 +34,12 @@ public class Receipt extends javax.swing.JDialog {
         System.out.println("DONE!!!");
         try {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT id,song_title,artist_Name"
-                    + ",time_Sold,price_in_cedis "
+                    + ",time_Sold,price_in_cedis,customer_Device as 'Destination History' "
                     + "FROM musicretail.songtracking");
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
+             jTable1.setAutoCreateRowSorter(true);
 
         } catch (Exception e) {
             System.out.println("Error" + e.toString());

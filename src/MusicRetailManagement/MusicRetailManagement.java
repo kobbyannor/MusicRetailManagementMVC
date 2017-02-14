@@ -33,6 +33,7 @@ import javax.persistence.Transient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
 /**
  *
  * @author Cobby Dollar
@@ -410,8 +411,9 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
 
-        int result = fc.showSaveDialog(null);
-
+        // int result = fc.showSaveDialog(null);
+        int result = fc.showDialog(null, "Select Customer's Media to Complete Purchase Process");
+        //fc.setDialogTitle("Select Customer's Media to Complete Purchase Process");
         if (result == JFileChooser.APPROVE_OPTION) {
 
             fileName = fc.getSelectedFile().toString();
@@ -456,12 +458,13 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 PreparedStatement p = conn.prepareStatement(
                         "Insert Into songTracking set song_title=?, "
                         + "artist_Name=? ,release_Year =?,"
-                        + "time_Sold =?");
+                        + "time_Sold =?,customer_Device =?");
 
                 p.setString(1, dbTitle);
                 p.setString(2, dbArtist);
                 p.setString(3, dbYear);
                 p.setString(4, stringDate);
+                p.setString(5, destinationFile.toString());
                 p.execute();  //use execute if no results expected back
             } catch (Exception e) {
                 System.out.println("Error" + e.toString());
@@ -482,8 +485,9 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         //set directory to the music folder of user's computer
         fc.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Music"));
         fc.setFileFilter(new FileTypeFilter(".mp3", "music File"));
-        int result = fc.showOpenDialog(null);
-
+        //  int result = fc.showOpenDialog(null);
+        int result = fc.showDialog(null, "Select a song to Purchase");
+        //  fc.setDialogTitle("Select Customer's Media to Complete Purchase Process");
         File[] files = fc.getSelectedFiles();
 
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -574,7 +578,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 //                    break;
 //                }
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                 //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.NoireLookAndFeel");
+                //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.NoireLookAndFeel");
                 // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
             }
         } catch (ClassNotFoundException ex) {

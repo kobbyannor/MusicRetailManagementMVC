@@ -44,6 +44,7 @@ public class Records extends javax.swing.JDialog {
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
+            jTable1.setAutoCreateRowSorter(true);
 
         } catch (Exception e) {
             System.out.println("Error" + e.toString());
