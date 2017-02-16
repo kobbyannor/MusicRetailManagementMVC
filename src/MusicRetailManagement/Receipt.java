@@ -91,7 +91,7 @@ public class Receipt extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1140, 220));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
@@ -131,7 +131,7 @@ public class Receipt extends javax.swing.JDialog {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 480, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/afd.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 480));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

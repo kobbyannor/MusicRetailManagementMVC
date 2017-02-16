@@ -91,7 +91,7 @@ public class Records extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 740, 370));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 840, 370));
 
         jButton1.setText("Print Report");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class Records extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CCC.jpg"))); // NOI18N
         jLabel1.setMinimumSize(new java.awt.Dimension(1024, 576));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
