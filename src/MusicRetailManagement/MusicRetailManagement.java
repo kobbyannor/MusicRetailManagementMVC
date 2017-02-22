@@ -5,17 +5,25 @@
  */
 package MusicRetailManagement;
 
+import java.io.FileInputStream;
+import javazoom.jl.player.Player;
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -25,14 +33,26 @@ import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.media.CannotRealizeException;
+import javax.media.ControllerEvent;
+import javax.media.Manager;
+import javax.media.ControllerListener;
+import javax.media.IncompatibleTimeBaseException;
+import javax.media.NoPlayerException;
+
+import javax.media.ControllerListener;
+import javax.media.RealizeCompleteEvent;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Transient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -45,19 +65,58 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String mp3Destination;
     private static File sourceFile;
     private static File destinationFile;
-    java.sql.Connection conn = null;
 
+    java.sql.Connection conn = null;
+    private File files;
     String dbTitle;
     String dbArtist;
     String dbYear;
     String dbTimeSold;
     int dbSales = 1;
+    private static Player playMp3;
+    Timer playerTimer = new Timer();
 
     /**
      * Creates new form MusicRetailManagement
      */
     public MusicRetailManagement() {
         initComponents();
+        setTitle("Music Retail Management");
+
+    }
+
+    public void playTrack() throws FileNotFoundException, JavaLayerException {
+
+        FileInputStream fis = new FileInputStream(mp3Source);
+        playMp3 = new Player(fis);
+
+        playerTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("playingk track");
+                    playMp3.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }, 1 * 1000);
+    }
+
+    public void stopTrack() throws FileNotFoundException, JavaLayerException {
+
+       playerTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("playingk track");
+               
+                try {
+                    playMp3.wait(3000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        },1* 1000);
     }
 
     //database connection
@@ -108,6 +167,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         singleSoldName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -219,7 +280,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cartItems, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,26 +338,51 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Receipt", jPanel9);
+
+        jButton1.setText("Play Selected Song");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Stop  Selected Song");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(58, 58, 58))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jLabel8.setBackground(new java.awt.Color(0, 153, 0));
@@ -373,11 +459,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 640, 450));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 690, 490));
 
         jPanel1.setBackground(new java.awt.Color(25, 75, 25));
 
@@ -394,7 +480,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +490,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 70));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -477,6 +563,21 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkoutBtnActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Receipt newReceipt = new Receipt(null, true);
+        newReceipt.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        Records newRecords = new Records(null, true);
+        newRecords.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void addSingleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSingleBtnActionPerformed
         // TODO add your handling code here:
@@ -502,6 +603,8 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             Mp3File mp3file = null;
             try {
                 mp3file = new Mp3File(mp3Source);
+
+                //new java.util.Timer().schedule(new java.util.);
             } catch (java.nio.file.AccessDeniedException e) {
                 return;
             } catch (IOException ex) {
@@ -514,7 +617,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1Tag = mp3file.getId3v1Tag();
                 // System.out.println("Track: " + id3v1Tag.getTrack());
-//cartItems
+                //cartItems
                 // artistLabel
 
                 dbTitle = id3v1Tag.getTitle();
@@ -535,30 +638,40 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             //             copy just one file
             artistLabel.setText(fc.getSelectedFile().toString());
             //         fileName = fc.getSelectedFile().toString( );
-
+            //            if (files.length > 1) {
+            //                System.out.println("nice");
+            //            }
         } else {
             messageDisplay("Purchase Process cancelled", "Alert");
             //     cartItems.setText("Purchase Process Cancelled");
 
             fileName = "the file";
         }
+
     }//GEN-LAST:event_addSingleBtnActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            // TODO add your handling code here:
+            playTrack();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        Records newRecords = new Records(null, true);
-        newRecords.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Receipt newReceipt = new Receipt(null, true);
-        newReceipt.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            stopTrack();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     final JFileChooser fc = new JFileChooser();
 
@@ -573,7 +686,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
+//                if ("Windows".equals(info.getName())) {
 //                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
 //                    break;
 //                }
@@ -603,12 +716,15 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSingleBtn;
     private javax.swing.JLabel artistLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel cartItems;
     private javax.swing.JButton checkoutBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
