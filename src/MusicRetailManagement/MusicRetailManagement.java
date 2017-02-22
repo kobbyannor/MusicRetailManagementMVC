@@ -5,6 +5,10 @@
  */
 package MusicRetailManagement;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import javazoom.jl.player.advanced.*;
 import java.io.FileInputStream;
 import javazoom.jl.player.Player;
 import com.mpatric.mp3agic.ID3v1;
@@ -37,6 +41,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.JFXPanel;
 import javax.media.CannotRealizeException;
 import javax.media.ControllerEvent;
 import javax.media.Manager;
@@ -80,6 +85,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
      * Creates new form MusicRetailManagement
      */
     public MusicRetailManagement() {
+        JFXPanel fxPanel = new JFXPanel();
         initComponents();
         setTitle("Music Retail Management");
 
@@ -87,36 +93,42 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     public void playTrack() throws FileNotFoundException, JavaLayerException {
 
-        FileInputStream fis = new FileInputStream(mp3Source);
-        playMp3 = new Player(fis);
+      //  FileInputStream fis = new FileInputStream(mp3Source);
+       // playMp3 = new Player(fis);
 
-        playerTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println("playingk track");
-                    playMp3.play();
-                } catch (JavaLayerException ex) {
-                    Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }, 1 * 1000);
+//        playerTimer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                try {
+//                    System.out.println("playingk track");
+//                    playMp3.play();
+//                } catch (JavaLayerException ex) {
+//                    Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }, 1 * 1000);
+       // String bip = "bip.mp3";
+        String bip =mp3Source;
+        Media hit = new Media(new File(bip).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
+
     }
 
     public void stopTrack() throws FileNotFoundException, JavaLayerException {
 
-       playerTimer.schedule(new TimerTask() {
+        playerTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 System.out.println("playingk track");
-               
+
                 try {
                     playMp3.wait(3000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        },1* 1000);
+        }, 1 * 1000);
     }
 
     //database connection
@@ -652,14 +664,16 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+       
         try {
-            // TODO add your handling code here:
             playTrack();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JavaLayerException ex) {
             Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
