@@ -10,8 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
+ * This RetailerLogin class enables authorized users to get access to the Music
+ * Retail Management program
  *
- * @author Cobby Dollar
+ * @author Asante Kobby Emmanuel Annor
+ * @id 47402017
+ *
  */
 public class RetailerLogin extends javax.swing.JFrame {
 
@@ -25,6 +29,12 @@ public class RetailerLogin extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     * This method initializes the database connection and connects the
+     * application to the database
+     *
+     * @throws Exception
+     */
     public void initialize() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -103,8 +113,15 @@ public class RetailerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
+    /**
+     * This method calls the method that initializes the database connection and
+     * connects the application to the database to verify whether a user is
+     * authorized to get access to the Music Retail Management program
+     *
+     * @throws Exception
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         initialize();
 
         System.out.println("DONE!!!");
