@@ -12,8 +12,10 @@ import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 
 /**
+ * This Receipt class displays an up-to-the-minute report of all songs
+ * retailed and their respective tracking details.
+ * @id 47402017
  *
- * @author Cobby Dollar
  */
 public class Receipt extends javax.swing.JDialog {
 
@@ -26,11 +28,16 @@ public class Receipt extends javax.swing.JDialog {
         fetchReceiptsFromDatabase();
     }
 
+    /**
+     * This method initializes the database connection and connects the
+     * application to the database to display accurate records of songs retailed
+     * and their details.
+     *
+     * @throws Exception
+     */
     public void fetchReceiptsFromDatabase() {
-
         RetailerLogin reestablishConnection = new RetailerLogin();
         reestablishConnection.initialize();
-
         System.out.println("DONE!!!");
         try {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT id,song_title,artist_Name"
@@ -39,7 +46,7 @@ public class Receipt extends javax.swing.JDialog {
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
-             jTable1.setAutoCreateRowSorter(true);
+            jTable1.setAutoCreateRowSorter(true);
 
         } catch (Exception e) {
             System.out.println("Error" + e.toString());
@@ -103,7 +110,7 @@ public class Receipt extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 130, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 130, 40));
 
         jButton3.setText("Calculate Total Earnings");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +118,7 @@ public class Receipt extends javax.swing.JDialog {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 130, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 170, 40));
 
         jButton1.setText("Total Number of Songs Retailed");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +142,10 @@ public class Receipt extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  private void printToPDF() {
+   /**
+     * This method prints the details of songs retailed mainly as pdf .
+     */
+    private void printToPDF() {
         MessageFormat header = new MessageFormat(" UP-TO-THE-MINUTE RECEIPT REPORTS ");
 
         try {
@@ -147,10 +157,22 @@ public class Receipt extends javax.swing.JDialog {
         }
 
     }
+
+    /**
+     * This method calls the method that prints the details of songs retailed
+     *
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         printToPDF();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * This method initializes the database connection or connects the
+     * application to the database to help calculate the total amount of money
+     * earned from the sale of music
+     *
+     * @throws Exception
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         RetailerLogin reestablishConnection = new RetailerLogin();
@@ -162,9 +184,6 @@ public class Receipt extends javax.swing.JDialog {
                     + " FROM  musicretail.songtracking ");
 
             ResultSet result = p.executeQuery();
-            // jTable1.setModel(DbUtils.resultSetToTableModel(result));
-//            jLabel2.setText(result.getString(1));
-//            System.out.println(result.getString(1));
 
             if (result.next()) {
                 String foundType = result.getString(1);
@@ -178,6 +197,13 @@ public class Receipt extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * This method initializes the database connection or connects the
+     * application to the database to help calculate the total number of songs
+     * retailed
+     *
+     * @throws Exception
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RetailerLogin reestablishConnection = new RetailerLogin();
         reestablishConnection.initialize();
@@ -188,9 +214,6 @@ public class Receipt extends javax.swing.JDialog {
                     + " FROM  musicretail.songtracking ");
 
             ResultSet result = p.executeQuery();
-            // jTable1.setModel(DbUtils.resultSetToTableModel(result));
-//            jLabel2.setText(result.getString(1));
-//            System.out.println(result.getString(1));
 
             if (result.next()) {
                 String foundType = result.getString(1);

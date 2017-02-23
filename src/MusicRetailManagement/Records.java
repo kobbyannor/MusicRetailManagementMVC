@@ -13,8 +13,11 @@ import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 
 /**
+ * This Records class displays a report of top selling songs in creation of an
+ * accurate music
  *
- * @author Cobby Dollar
+ * @id 47402017
+ *
  */
 public class Records extends javax.swing.JDialog {
 
@@ -27,7 +30,14 @@ public class Records extends javax.swing.JDialog {
         initComponents();
         fetchRecordsFromDatabase();
     }
-//fetches records from database
+
+    /**
+     * This method initializes the database connection and connects the
+     * application to the database to display accurate records of top selling
+     * songs and their details.
+     *
+     * @throws Exception
+     */
 
     public void fetchRecordsFromDatabase() {
 
@@ -39,8 +49,6 @@ public class Records extends javax.swing.JDialog {
             PreparedStatement p = reestablishConnection.conn.prepareStatement("SELECT song_title,"
                     + "artist_Name,release_Year,time_Sold as 'Last Time Sold',no_of_sales,price_in_cedis*no_of_sales as 'Total Earnings (in ¢)' "
                     + "FROM musicretail.song order by no_of_sales DESC");
-            
-            
 
             ResultSet result = p.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(result));
@@ -112,7 +120,13 @@ public class Records extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  private void printToPDF() {
+
+    /**
+     * This method prints report of top selling songs in creation of an accurate
+     * music chart
+     *
+     */
+    private void printToPDF() {
         MessageFormat header = new MessageFormat(" TOP SELLERS REPORT ");
 
         try {
@@ -123,6 +137,12 @@ public class Records extends javax.swing.JDialog {
         }
 
     }
+
+    /**
+     * This method calls the method that prints report of top selling songs in
+     * creation of an accurate music chart
+     *
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         printToPDF();
     }//GEN-LAST:event_jButton1ActionPerformed
