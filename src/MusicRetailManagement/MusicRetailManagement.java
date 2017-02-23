@@ -1,67 +1,41 @@
-/*
+/**
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template file, choose Tools | Templates and open the template
+ * in the editor.
  */
 package MusicRetailManagement;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import javazoom.jl.player.advanced.*;
-import java.io.FileInputStream;
-import javazoom.jl.player.Player;
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-import java.awt.BorderLayout;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.security.Timestamp;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
-import javax.media.CannotRealizeException;
-import javax.media.ControllerEvent;
-import javax.media.Manager;
-import javax.media.ControllerListener;
-import javax.media.IncompatibleTimeBaseException;
-import javax.media.NoPlayerException;
-
-import javax.media.ControllerListener;
-import javax.media.RealizeCompleteEvent;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Transient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javazoom.jl.decoder.JavaLayerException;
 
 /**
+ * The Music Retail Management program implements an application that helps a
+ * legal Music Retailer to sell music and keep accurate track of all songs
+ * retailed
  *
- * @author Cobby Dollar
+ * @author Asante Kobby Emmanuel Annor
+ * @id 47402017
+ * @version 1.0
+ *
  */
 public class MusicRetailManagement extends javax.swing.JFrame {
 
@@ -70,7 +44,6 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String mp3Destination;
     private static File sourceFile;
     private static File destinationFile;
-
     java.sql.Connection conn = null;
     private File files;
     String dbTitle;
@@ -78,7 +51,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String dbYear;
     String dbTimeSold;
     int dbSales = 1;
-    private static Player playMp3;
+
     Timer playerTimer = new Timer();
 
     /**
@@ -91,33 +64,27 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
     }
 
-    public void playTrack() throws FileNotFoundException, JavaLayerException {
-
-      //  FileInputStream fis = new FileInputStream(mp3Source);
-       // playMp3 = new Player(fis);
-
-//        playerTimer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                try {
-//                    System.out.println("playingk track");
-//                    playMp3.play();
-//                } catch (JavaLayerException ex) {
-//                    Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }, 1 * 1000);
-       // String bip = "bip.mp3";
-        String bip =mp3Source;
+    /**
+     * This method previews a song a customer might want to purchase.
+     *
+     *
+     * @throws FileNotFoundException
+     */
+    public void playTrack() throws FileNotFoundException {
+        String bip = mp3Source;
         Media hit = new Media(new File(bip).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(hit);
         mediaPlayer.play();
 
     }
 
-   
-
-    //database connection
+    /**
+     * This method initializes the database connection or connects the
+     * application to the database to store accurate records of songs retailed
+     * and their details
+     *
+     * @throws Exception
+     */
     public void initialize() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -131,7 +98,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         System.out.println("Connection established");
     }
 
-    //show alert messages containing information
+    /**
+     * This method show alert messages containing information about the results
+     * of an action.
+     */
     public static void messageDisplay(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, "messageBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 
@@ -484,13 +454,16 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method opens a dialog box to save the song purchased by the customer
+     * to his or her device.
+     *
+     * @throws FileNotFoundException
+     * @throws Exception
+     */
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
-
-        // int result = fc.showSaveDialog(null);
         int result = fc.showDialog(null, "Select Customer's Media to Complete Purchase Process");
-        //fc.setDialogTitle("Select Customer's Media to Complete Purchase Process");
         if (result == JFileChooser.APPROVE_OPTION) {
-
             fileName = fc.getSelectedFile().toString();
             mp3Destination = fc.getSelectedFile().toString();
             destinationFile = new File(mp3Destination);
@@ -499,31 +472,24 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //date song was sold
             String nameOfSingleSold = fc.getSelectedFile().getName();
             singleSoldName.setText(nameOfSingleSold);
-            //date type 1
-
-            //date type 2
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy, hh:mm:ss.SSS a");
             String stringDate = dateFormat.format(new Date());
             jLabel3.setText(stringDate);
-
             initialize();
-
             System.out.println("DONE!!!");
             try {
                 PreparedStatement p = conn.prepareStatement(
                         "Insert Into song set song_title=?, "
                         + "artist_Name=? ,release_Year =?,"
                         + "time_Sold =?,no_of_sales=? ON DUPLICATE KEY UPDATE no_of_sales=no_of_sales+1;");
-
                 p.setString(1, dbTitle);
                 p.setString(2, dbArtist);
                 p.setString(3, dbYear);
                 p.setString(4, stringDate);
                 p.setInt(5, dbSales = 1);
-                p.execute();  //use execute if no results expected back
+                p.execute();
             } catch (Exception e) {
                 System.out.println("Error" + e.toString());
                 return;
@@ -540,60 +506,62 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 p.setString(3, dbYear);
                 p.setString(4, stringDate);
                 p.setString(5, destinationFile.toString());
-                p.execute();  //use execute if no results expected back
+                p.execute();
             } catch (Exception e) {
                 System.out.println("Error" + e.toString());
                 return;
             }
             messageDisplay(dbArtist + " - " + dbTitle + " successfully purchased!", "Alert");
         } else {
-            //cartItems.setText("Purchase Process cancelled");
             messageDisplay("Purchase Process cancelled", "Alert");
         }
     }//GEN-LAST:event_checkoutBtnActionPerformed
 
+    /**
+     * This method closes the program
+     *
+     */
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    /**
+     * This method opens the receipt of all songs sold showing up-to-the-minute
+     * details of all songs sold.
+     *
+     */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Receipt newReceipt = new Receipt(null, true);
         newReceipt.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
-
+    /**
+     * This method activates the Records JFrame which shows the top selling
+     * songs
+     *
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
         Records newRecords = new Records(null, true);
         newRecords.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * This method opens a dialog box to select a song a customer wants to
+     * purchase.
+     * @throw Exceptions
+     *
+     */
     private void addSingleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSingleBtnActionPerformed
-        // TODO add your handling code here:
-
         fc.setMultiSelectionEnabled(true);
-        //set directory to the music folder of user's computer
         fc.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Music"));
         fc.setFileFilter(new FileTypeFilter(".mp3", "music File"));
-        //  int result = fc.showOpenDialog(null);
         int result = fc.showDialog(null, "Select a song to Purchase");
-        //  fc.setDialogTitle("Select Customer's Media to Complete Purchase Process");
         File[] files = fc.getSelectedFiles();
-
         if (result == JFileChooser.APPROVE_OPTION) {
-
-            //  String valueToBeInserted = "";
-            //            for (int j = 0; j < files.length; j++) {
-            //                valueToBeInserted = valueToBeInserted + " " + files[j];
-            //            }
-            //  cartItems.setText(fc.getSelectedFile().getName());
             mp3Source = fc.getSelectedFile().toString();//readies the selected file to be copied
             sourceFile = new File(mp3Source);
             Mp3File mp3file = null;
             try {
                 mp3file = new Mp3File(mp3Source);
-
-                //new java.util.Timer().schedule(new java.util.);
             } catch (java.nio.file.AccessDeniedException e) {
                 return;
             } catch (IOException ex) {
@@ -605,15 +573,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             }
             if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1Tag = mp3file.getId3v1Tag();
-                // System.out.println("Track: " + id3v1Tag.getTrack());
-                //cartItems
-                // artistLabel
-
                 dbTitle = id3v1Tag.getTitle();
                 dbArtist = id3v1Tag.getArtist();
                 dbYear = id3v1Tag.getYear();
-                // dbTimeSold= stringDate();
-                //    dbSales= no_of_sales();
+                //dbTimeSold= stringDate();
+                //dbSales= no_of_sales();
 
                 cartItems.setText("<html>Artist: " + dbArtist
                         + "<br>Title: " + dbTitle + "<br>Album: " + dbYear + "<html>");
@@ -622,37 +586,26 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 //System.out.println("Year: " + id3v1Tag.getYear()+);
                 //System.out.println("Genre: " + id3v1Tag.getGenre()+ + " (" + id3v1Tag.getGenreDescription() + ")");
                 //System.out.println("Comment: " + id3v1Tag.getComment());
-
             }
-            //             copy just one file
             artistLabel.setText(fc.getSelectedFile().toString());
-            //         fileName = fc.getSelectedFile().toString( );
-            //            if (files.length > 1) {
-            //                System.out.println("nice");
-            //            }
+
         } else {
             messageDisplay("Purchase Process cancelled", "Alert");
-            //     cartItems.setText("Purchase Process Cancelled");
-
             fileName = "the file";
         }
-
     }//GEN-LAST:event_addSingleBtnActionPerformed
 
+    /**
+     * This method calls the playTrack() method, which previews a song a
+     * customer might want to purchase.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-       
         try {
             playTrack();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JavaLayerException ex) {
-            Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-
     }//GEN-LAST:event_jButton1ActionPerformed
-
     final JFileChooser fc = new JFileChooser();
 
     /**
@@ -666,10 +619,6 @@ public class MusicRetailManagement extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Windows".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                 //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.NoireLookAndFeel");
                 // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
@@ -688,10 +637,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
                 new RetailerLogin().setVisible(true);
-                // new MusicRetailManagement().setVisible(true);
-
             }
         });
     }
