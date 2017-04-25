@@ -19,7 +19,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Timer;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
@@ -52,7 +52,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     String dbTimeSold;
     int dbSales = 1;
 
-    Timer playerTimer = new Timer();
+   
 
     /**
      * Creates new form MusicRetailManagement
@@ -135,12 +135,12 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         singleSoldName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonPreviewSong = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButtonRecords = new javax.swing.JButton();
+        jButtonReceipt = new javax.swing.JButton();
+        jButtonExit = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -311,10 +311,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Receipt", jPanel9);
 
-        jButton1.setText("Preview Selected Song");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPreviewSong.setText("Preview Selected Song");
+        jButtonPreviewSong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPreviewSongActionPerformed(evt);
             }
         });
 
@@ -328,7 +328,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPreviewSong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
@@ -336,7 +336,7 @@ public class MusicRetailManagement extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(jButtonPreviewSong)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,39 +351,39 @@ public class MusicRetailManagement extends javax.swing.JFrame {
         jLabel8.setText("Price Per Song GHC1.5");
         jLabel8.setToolTipText("");
 
-        jButton5.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 153, 0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_48px.png"))); // NOI18N
-        jButton5.setText("Records");
-        jButton5.setToolTipText("");
-        jButton5.setBorder(new javax.swing.border.MatteBorder(null));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRecords.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jButtonRecords.setForeground(new java.awt.Color(0, 153, 0));
+        jButtonRecords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_48px.png"))); // NOI18N
+        jButtonRecords.setText("Records");
+        jButtonRecords.setToolTipText("");
+        jButtonRecords.setBorder(new javax.swing.border.MatteBorder(null));
+        jButtonRecords.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonRecordsActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 153, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receipt_48px.png"))); // NOI18N
-        jButton7.setText("Receipt");
-        jButton7.setToolTipText("");
-        jButton7.setBorder(new javax.swing.border.MatteBorder(null));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReceipt.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jButtonReceipt.setForeground(new java.awt.Color(0, 153, 0));
+        jButtonReceipt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receipt_48px.png"))); // NOI18N
+        jButtonReceipt.setText("Receipt");
+        jButtonReceipt.setToolTipText("");
+        jButtonReceipt.setBorder(new javax.swing.border.MatteBorder(null));
+        jButtonReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButtonReceiptActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 153, 0));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exit_48px.png"))); // NOI18N
-        jButton8.setText("Exit");
-        jButton8.setToolTipText("");
-        jButton8.setBorder(new javax.swing.border.MatteBorder(null));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExit.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jButtonExit.setForeground(new java.awt.Color(0, 153, 0));
+        jButtonExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exit_48px.png"))); // NOI18N
+        jButtonExit.setText("Exit");
+        jButtonExit.setToolTipText("");
+        jButtonExit.setBorder(new javax.swing.border.MatteBorder(null));
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButtonExitActionPerformed(evt);
             }
         });
 
@@ -395,10 +395,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonReceipt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addSingleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonRecords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -414,11 +414,11 @@ public class MusicRetailManagement extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonReceipt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -521,28 +521,28 @@ public class MusicRetailManagement extends javax.swing.JFrame {
      * This method closes the program
      *
      */
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButtonExitActionPerformed
 
     /**
      * This method opens the receipt of all songs sold showing up-to-the-minute
      * details of all songs sold.
      *
      */
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButtonReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReceiptActionPerformed
         Receipt newReceipt = new Receipt(null, true);
         newReceipt.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jButtonReceiptActionPerformed
     /**
      * This method activates the Records JFrame which shows the top selling
      * songs
      *
      */
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecordsActionPerformed
         Records newRecords = new Records(null, true);
         newRecords.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButtonRecordsActionPerformed
 
     /**
      * This method opens a dialog box to select a song a customer wants to
@@ -599,13 +599,13 @@ public class MusicRetailManagement extends javax.swing.JFrame {
      * This method calls the playTrack() method, which previews a song a
      * customer might want to purchase.
      */
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonPreviewSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewSongActionPerformed
         try {
             playTrack();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MusicRetailManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonPreviewSongActionPerformed
     final JFileChooser fc = new JFileChooser();
 
     /**
@@ -649,10 +649,10 @@ public class MusicRetailManagement extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel cartItems;
     private javax.swing.JButton checkoutBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonPreviewSong;
+    private javax.swing.JButton jButtonReceipt;
+    private javax.swing.JButton jButtonRecords;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;

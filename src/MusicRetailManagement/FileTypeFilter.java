@@ -10,7 +10,7 @@ import java.io.File;
 
 /**
  * This FileTypeFilter class filters the dialog box to display only mp3 files
- * which is file extension of songs to be retailed
+ * which is the file extension of songs to be retailed
  *
  * @author Asante Kobby Emmanuel Annor
  * @id 47402017

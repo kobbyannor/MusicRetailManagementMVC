@@ -67,9 +67,9 @@ public class Receipt extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonPrintReport = new javax.swing.JButton();
+        jButtonCalculateTotalEarnings = new javax.swing.JButton();
+        jButtonTotalNumbersOfSongsRetailed = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -104,29 +104,29 @@ public class Receipt extends javax.swing.JDialog {
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 110, 30));
 
-        jButton2.setText("PRINT REPORT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrintReport.setText("PRINT REPORT");
+        jButtonPrintReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonPrintReportActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 130, 40));
+        getContentPane().add(jButtonPrintReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 130, 40));
 
-        jButton3.setText("Calculate Total Earnings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCalculateTotalEarnings.setText("Calculate Total Earnings");
+        jButtonCalculateTotalEarnings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCalculateTotalEarningsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 170, 40));
+        getContentPane().add(jButtonCalculateTotalEarnings, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 170, 40));
 
-        jButton1.setText("Total Number of Songs Retailed");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTotalNumbersOfSongsRetailed.setText("Total Number of Songs Retailed");
+        jButtonTotalNumbersOfSongsRetailed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonTotalNumbersOfSongsRetailedActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 190, 30));
+        getContentPane().add(jButtonTotalNumbersOfSongsRetailed, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 190, 30));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
@@ -162,9 +162,9 @@ public class Receipt extends javax.swing.JDialog {
      * This method calls the method that prints the details of songs retailed
      *
      */
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonPrintReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintReportActionPerformed
         printToPDF();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonPrintReportActionPerformed
 
     /**
      * This method initializes the database connection or connects the
@@ -173,7 +173,7 @@ public class Receipt extends javax.swing.JDialog {
      *
      * @throws Exception
      */
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCalculateTotalEarningsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateTotalEarningsActionPerformed
         // TODO add your handling code here:
         RetailerLogin reestablishConnection = new RetailerLogin();
         reestablishConnection.initialize();
@@ -195,7 +195,7 @@ public class Receipt extends javax.swing.JDialog {
             System.out.println("Error" + e.toString());
             return;
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCalculateTotalEarningsActionPerformed
 
     /**
      * This method initializes the database connection or connects the
@@ -204,7 +204,7 @@ public class Receipt extends javax.swing.JDialog {
      *
      * @throws Exception
      */
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonTotalNumbersOfSongsRetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTotalNumbersOfSongsRetailedActionPerformed
         RetailerLogin reestablishConnection = new RetailerLogin();
         reestablishConnection.initialize();
 
@@ -225,7 +225,7 @@ public class Receipt extends javax.swing.JDialog {
             System.out.println("Error" + e.toString());
             return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonTotalNumbersOfSongsRetailedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,9 +270,9 @@ public class Receipt extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCalculateTotalEarnings;
+    private javax.swing.JButton jButtonPrintReport;
+    private javax.swing.JButton jButtonTotalNumbersOfSongsRetailed;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
